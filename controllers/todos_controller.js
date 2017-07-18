@@ -46,7 +46,7 @@ function onDone (req, res) {
   })
 }
 
-function destroy (id) {
+function destroy (req, res) {
   Todo.findOneAndRemove({_id: req.params.id }, function (err) {
     if (err) console.log(err)
     res.redirect('/todos')
