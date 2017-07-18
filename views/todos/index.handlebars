@@ -1,0 +1,24 @@
+<h1>All todos list</h1>
+
+{{!-- {{{allTodos}}} 3 curlybraces will be written as html in the webpage --}}
+
+{{!-- Render all my data --}}
+<ul>
+  {{#each allTodos as |todo|}}
+    {{#unless todo.completed}}
+  <li>
+    <h4>{{todo.name}}</h4>
+    <p> {{ todo.description }} - {{todo.completed}} </p> {{!-- 2 curlybraces will be rendered as text --}}
+
+    {{!-- form can only send GET and SHOW, not PUT or DELETE, so require method-override to enable them --}}
+    <form action="/todos/{{todo.id}}?_method=put" method="post">
+      <button>Done!</button>
+    </form>
+
+    <form action="/todos/{{todo.id}}?_method=delete" method="post">
+      <button>Delete!</button>
+    </form>
+  </li>
+    {{/unless}}
+  {{/each}}
+</ul>
